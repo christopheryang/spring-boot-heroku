@@ -1,14 +1,10 @@
 package com.jackfluid.entity;
 
-import org.springframework.data.annotation.Id;
+public class Customer extends BaseEntity {
 
+    private static final long serialVersionUID = 1L;
 
-public class Customer {
-
-    @Id
-    private String id;
-
-    private String firstName;
+	private String firstName;
     private String lastName;
 
     public Customer() {}
