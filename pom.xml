@@ -15,7 +15,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.8</java.version>
-		
+
 		<querydsl.version>3.6.0</querydsl.version>
 		<guava.version>18.0</guava.version>
 
@@ -27,18 +27,18 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-		
+
 		<dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-actuator</artifactId>
-        </dependency>
-		
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
 		<!-- ========= Spring Data ========= -->
 		<dependency>
-        	<groupId>org.springframework.data</groupId>
-        	<artifactId>spring-data-mongodb</artifactId>
-    	</dependency>
-    	
+			<groupId>org.springframework.data</groupId>
+			<artifactId>spring-data-mongodb</artifactId>
+		</dependency>
+
 		<!-- =============== Everything else ============== -->
 		<dependency>
 			<groupId>com.google.guava</groupId>
@@ -51,6 +51,18 @@
 			<artifactId>joda-time</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.twitter</groupId>
+			<artifactId>hbc-core</artifactId> <!-- or hbc-twitter4j -->
+			<version>2.2.0</version> <!-- or whatever the latest version is -->
+		</dependency>
+
+		<dependency>
+			<groupId>com.twitter</groupId>
+			<artifactId>hbc-twitter4j</artifactId>
+			<version>2.2.0</version>
+		</dependency>
+		
 		<!-- ========= Testing ======== -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

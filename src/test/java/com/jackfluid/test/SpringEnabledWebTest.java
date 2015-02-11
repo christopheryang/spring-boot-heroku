@@ -15,12 +15,13 @@ import org.springframework.web.client.RestTemplate;
 
 import com.jackfluid.app.Application;
 import com.jackfluid.controller.CustomerController;
+import com.jackfluid.controller.TwitterFeedController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringApplicationConfiguration(classes = Application.class)
 @WebAppConfiguration
 @IntegrationTest({"server.port=0"}) // Random port
-@Ignore
+@Ignore 
 public class SpringEnabledWebTest {
 
 	@Value("${local.server.port}") // Actual port
@@ -31,10 +32,13 @@ public class SpringEnabledWebTest {
 
 	protected String customersUrl;
 	
+	protected String twitterFeedUrl;
+	
 	@Before
 	public void setUp() throws Exception {
 		this.base = new URL("http://localhost:" + port);
 		customersUrl = base.toString()+CustomerController.CUSTOMERS_API_URL;
+		twitterFeedUrl = base.toExternalForm()+TwitterFeedController.TWITTER_FEED_API_URL;
 		template = new TestRestTemplate();
 	}
 

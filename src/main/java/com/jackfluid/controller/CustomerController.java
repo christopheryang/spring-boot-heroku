@@ -17,7 +17,7 @@ import com.jackfluid.repo.mongo.CustomerRepo;
 @RequestMapping(CustomerController.CUSTOMERS_API_URL)
 public class CustomerController {
 	
-	public static final String CUSTOMERS_API_URL = "/customers";
+	public static final String CUSTOMERS_API_URL = "/customer";
 	
 	@Autowired
 	protected CustomerRepo custRepo;
