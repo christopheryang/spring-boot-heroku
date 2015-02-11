@@ -14,7 +14,6 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.web.client.RestTemplate;
 
 import com.jackfluid.app.Application;
-import com.jackfluid.controller.CustomerController;
 import com.jackfluid.controller.TwitterFeedController;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -30,14 +29,11 @@ public class SpringEnabledWebTest {
 	protected URL base;
 	protected RestTemplate template;
 
-	protected String customersUrl;
-	
 	protected String twitterFeedUrl;
 	
 	@Before
 	public void setUp() throws Exception {
 		this.base = new URL("http://localhost:" + port);
-		customersUrl = base.toString()+CustomerController.CUSTOMERS_API_URL;
 		twitterFeedUrl = base.toExternalForm()+TwitterFeedController.TWITTER_FEED_API_URL;
 		template = new TestRestTemplate();
 	}
