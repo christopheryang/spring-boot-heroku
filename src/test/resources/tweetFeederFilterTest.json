@@ -1,0 +1,6 @@
+{
+	"searchTerm": "${searchTerm}",
+	"maxResults": 10,
+	"maxTotDuration": 10,
+	"sendTo": "http://localhost:${port}/tweet"
+}

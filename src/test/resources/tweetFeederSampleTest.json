@@ -1,0 +1,5 @@
+{
+	"maxResults": 100,
+	"maxTotDuration": 10,
+	"sendTo": "http://localhost:${port}/tweet"
+}
