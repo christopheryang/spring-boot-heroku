@@ -7,7 +7,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import twitter4j.Status;
 
 @Document(collection="Tweets")
-public class Tweet {
+public class Tweet extends JsonEntity {
+	
+	private static final long serialVersionUID = 1L;
 	
 	protected Date createdAt;
 	protected Long id;
@@ -24,4 +26,5 @@ public class Tweet {
 		this.lang = status.getLang();
 		this.user = new User(status.getUser());
 	}
+	
 }

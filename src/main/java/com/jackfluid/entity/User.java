@@ -1,6 +1,8 @@
 package com.jackfluid.entity;
 
-public class User {
+public class User extends JsonEntity {
+	
+	private static final long serialVersionUID = 1L;
 	
 	protected Long id;
 	protected String name;

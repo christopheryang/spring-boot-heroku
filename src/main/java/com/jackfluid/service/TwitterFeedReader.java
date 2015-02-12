@@ -5,6 +5,8 @@ import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.TimeUnit;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
@@ -15,7 +17,9 @@ import twitter4j.TwitterObjectFactory;
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
 import com.jackfluid.dto.TwitterFeedReadDto;
+import com.jackfluid.entity.Tweet;
 import com.jackfluid.repo.mongo.TwitterStatusRepo;
+import com.jackfluid.util.JacksonUtil;
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
@@ -27,8 +31,8 @@ import com.twitter.hbc.httpclient.auth.OAuth1;
 @Service
 public class TwitterFeedReader {
 	
-	public static final int DEFAULT_MAX_READS = 10;
-	public static final int DEFAULT_MAX_TOTAL_READ_DURATION = 10; // In seconds
+	private static final Logger logger = LoggerFactory.getLogger(TwitterFeedReader.class);
+	
 	
 	@Value("${twitter.api.consumerKey}")
 	protected String consumerKey;
@@ -56,8 +60,6 @@ public class TwitterFeedReader {
 	}
 	
 	protected List<Status> readStream(TwitterFeedReadDto dto) throws Exception {
-		int maxRead = dto.getMax()==null? DEFAULT_MAX_READS: dto.getMax();
-		long maxDuration = dto.getDuration()==null? DEFAULT_MAX_TOTAL_READ_DURATION: dto.getDuration();
 		
 		BlockingQueue<String> queue = new LinkedBlockingQueue<String>(1000);
 		StatusesFilterEndpoint endpoint = new StatusesFilterEndpoint();
@@ -82,18 +84,20 @@ public class TwitterFeedReader {
 		long startTime = System.currentTimeMillis();
 		long totalDuration;
 		List<Status> result = Lists.newArrayList();
-		for (int msgRead = 0; msgRead < maxRead; msgRead++) {
-			String msg = queue.poll(maxDuration, TimeUnit.SECONDS);
+		for (int msgRead = 0; msgRead < dto.getMax(); msgRead++) {
+			String msg = queue.poll(dto.getSecs(), TimeUnit.SECONDS);
 			if(!Strings.isNullOrEmpty(msg)){
-				System.out.println(msg);
+				// De-serialize JSON
 				Status status = TwitterObjectFactory.createStatus(msg);
 				if("en".equalsIgnoreCase(status.getLang())){
 					tsRepo.save(status);
 					result.add(status);
+					Tweet tweet = new Tweet(status);
+					logger.info(JacksonUtil.toString(tweet));
 				}
 			}
 			totalDuration = System.currentTimeMillis()-startTime;
-			if(totalDuration>maxDuration*1000){
+			if(totalDuration>dto.getSecs()*1000){
 				break;
 			}
 		}

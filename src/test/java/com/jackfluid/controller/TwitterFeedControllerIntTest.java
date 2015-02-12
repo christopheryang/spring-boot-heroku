@@ -8,6 +8,7 @@ import static org.junit.Assert.assertThat;
 import java.util.List;
 
 import org.junit.Test;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import com.jackfluid.test.SpringEnabledWebTest;
@@ -36,6 +37,14 @@ public class TwitterFeedControllerIntTest extends SpringEnabledWebTest {
 		assertThat(result, hasSize(greaterThanOrEqualTo(0)));
 		System.out.println(result);
 	}
+	
+	@Test
+	public void testNoQueryTerm(){
+		String url = twitterFeedUrl+"?q=";
+		ResponseEntity<Object> response = template.getForEntity(url, Object.class);
+		assertThat(response.getStatusCode(), equalTo(HttpStatus.BAD_REQUEST));
+	}
+	
 	
 	
 }
