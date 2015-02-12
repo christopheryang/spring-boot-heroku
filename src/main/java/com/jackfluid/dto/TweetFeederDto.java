@@ -18,11 +18,11 @@ public class TweetFeederDto extends JsonEntity {
 //	@NotBlank(message="searchTerm is required.")
 	protected String searchTerm;
 	
-	@Max(value=1000, message="Max number of Tweets to read is 1000")
+	@Max(value=100000, message="Max number of Tweets to read is 1000")
 	@Min(value=0, message="Min number of Tweets to read is 0")
 	protected Integer maxResults;
 	
-	@Max(value=600, message="Max Tweet feed read duration is 10 minutes")
+	@Max(value=10000, message="Max Tweet feed read duration is 10 minutes")
 	@Min(value=0, message="Min Tweet feed read duration is 0 second")
 	protected Integer maxTotDuration;
 	
