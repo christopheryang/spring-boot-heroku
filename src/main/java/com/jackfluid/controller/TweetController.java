@@ -13,7 +13,7 @@ import twitter4j.Status;
 import twitter4j.TwitterObjectFactory;
 
 import com.jackfluid.entity.Tweet;
-import com.jackfluid.repo.mongo.TweetRepo;
+import com.jackfluid.repo.TweetRepo;
 import com.jackfluid.util.JacksonUtil;
 
 @RestController

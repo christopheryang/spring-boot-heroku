@@ -17,7 +17,7 @@ import org.springframework.web.client.RestTemplate;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
-import com.jackfluid.dto.TweetFeederDto;
+import com.jackfluid.entity.TweetFeederDto;
 import com.twitter.hbc.ClientBuilder;
 import com.twitter.hbc.core.Client;
 import com.twitter.hbc.core.Constants;
@@ -106,7 +106,7 @@ public class TweetFeederService {
 			}
 			totalDuration = System.currentTimeMillis()-startTime;
 			if(totalDuration>dto.getEffectiveMaxTotalDuration()*1000){
-				logger.warn("######### Exceeding max time duration. Stopping feed after: "+totalDuration/1000+" seconds");
+				logger.warn("######## Exceeded max time duration. Stopping feed after: "+totalDuration/1000+" seconds");
 				break;
 			}
 		}

@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jackfluid.dto.TweetFeederDto;
+import com.jackfluid.entity.TweetFeederDto;
 import com.jackfluid.service.TweetFeederService;
 import com.jackfluid.util.JacksonUtil;
 

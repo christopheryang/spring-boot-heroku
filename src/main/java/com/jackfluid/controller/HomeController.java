@@ -8,7 +8,7 @@ public class HomeController {
 
 	@RequestMapping("/")
 	public String index() {
-		return "Greetings from Spring Boot!";
+		return "Spring Boot on Heroku";
 	}
 	
 	@RequestMapping("/loaderio-f4b4f879a17005b5bcd9a0f929da6e94/")

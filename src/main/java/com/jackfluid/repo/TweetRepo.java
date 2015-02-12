@@ -1,4 +1,4 @@
-package com.jackfluid.repo.mongo;
+package com.jackfluid.repo;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
 
