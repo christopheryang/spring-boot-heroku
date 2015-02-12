@@ -1,0 +1,8 @@
+# look for MONGOLAB_URI config var in Heroku
+spring.data.mongodb.uri=mongodb://<username>:<password>@<hostname>:<port>/<database_name>
+
+# twitter api credentials
+twitter.api.consumerKey=<your_twitter_api_consumerKey>
+twitter.api.consuerSecret=<your_twitter_api_consumerSecret>
+twitter.api.token=<your_twiter_api_token>
+twitter.api.secret=<your_twitter_api_secret>
